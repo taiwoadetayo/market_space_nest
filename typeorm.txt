@@ -1,0 +1,52 @@
+TypeORM is an Object-Relational Mapping (ORM) library for TypeScript and JavaScript that simplifies database access and interaction by mapping database tables to JavaScript objects. It provides an abstraction layer over relational databases, allowing you to work with your data using TypeScript or JavaScript classes and objects, rather than writing SQL queries directly.
+
+Here's an overview of how TypeORM works:
+
+Database Configuration:
+
+You start by configuring TypeORM to connect to your database. You specify the database type (e.g., MySQL, PostgreSQL, SQLite, etc.), host, port, username, password, and database name in a configuration file or directly in your code.
+Entity Classes:
+
+In TypeORM, you define entity classes that represent database tables. Each entity class corresponds to a table, and each property of the class corresponds to a column in the table. You use decorators (@Entity(), @Column(), etc.) to define the mapping between the class and the database table.
+Repository:
+
+TypeORM provides a repository pattern for each entity. Repositories are used to perform database operations (e.g., create, read, update, delete) on the entities. You can create, retrieve, update, and delete records by interacting with the repository.
+Entity Manager:
+
+The entity manager is a central component in TypeORM that manages the lifecycle and persistence of entities. It provides methods for working with transactions and performing more complex database operations.
+Query Builder:
+
+TypeORM includes a query builder that allows you to construct SQL queries using a fluent and type-safe API. You can build complex queries without writing raw SQL.
+Migrations:
+
+TypeORM supports database migrations, which are scripts that help you manage changes to your database schema over time. Migrations allow you to keep your database schema in sync with your application code.
+Connection and Synchronization:
+
+You create a database connection using TypeORM's createConnection() method. TypeORM can also automatically generate database tables based on your entity classes (if they don't exist) and synchronize the schema with your code.
+CRUD Operations:
+
+You can perform CRUD (Create, Read, Update, Delete) operations on your entities using the entity manager or the repository. This allows you to interact with your database in a more object-oriented way.
+Error Handling:
+
+TypeORM provides error handling mechanisms for database-related errors, allowing you to gracefully handle exceptions and errors that may occur during database operations.
+Middleware and Hooks:
+
+TypeORM allows you to define middleware and lifecycle hooks (such as @BeforeInsert(), @BeforeUpdate(), etc.) on your entity classes to execute custom logic before or after database operations.
+Transaction Support:
+
+TypeORM supports database transactions, allowing you to group multiple database operations into a single atomic unit. Transactions ensure data integrity and consistency.
+Plugins and Extensions:
+
+TypeORM has a vibrant ecosystem of plugins and extensions that can be used to enhance its functionality or integrate it with other libraries and tools.
+Overall, TypeORM simplifies database interactions by providing a higher-level, object-oriented abstraction over relational databases. It allows you to work with databases in a more TypeScript/JavaScript-centric way, reducing the need to write raw SQL queries and enhancing the maintainability of your code.
+
+
+
+      type: 'mysql', // Change this to your database type (e.g., 'mysql', 'postgres', etc.)
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: '',
+      database: 'marketspaceng',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: true, // This is for development only, be cautious in production
