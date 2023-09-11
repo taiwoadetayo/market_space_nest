@@ -9,30 +9,30 @@ import {
 } from '@nestjs/common';
 import { TasksService } from '../services/tasks.service';
 import { TaskDto } from '../dtos/task.dto';
-import { Task } from '../task.entity';
+import { Tasks } from '../tasks.entity';
 
 @Controller('api/tasks')
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
   @Post()
-  create(@Body() task: TaskDto): Promise<Task> {
-    return this.tasksService.create(task);
+  create(@Body() tasks: TaskDto): Promise<Tasks> {
+    return this.tasksService.create(tasks);
   }
 
   @Get()
-  findAll(): Promise<Task[]> {
+  findAll(): Promise<Tasks[]> {
     return this.tasksService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<Task | undefined> {
+  findOne(@Param('id') id: string): Promise<Tasks | undefined> {
     return this.tasksService.findOne(+id);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() task: Task): Promise<Task | undefined> {
-    return this.tasksService.update(+id, task);
+  update(@Param('id') id: string, @Body() tasks: Tasks): Promise<Tasks | undefined> {
+    return this.tasksService.update(+id, tasks);
   }
 
   @Delete(':id')

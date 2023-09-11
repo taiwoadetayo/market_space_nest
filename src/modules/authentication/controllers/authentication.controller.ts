@@ -71,6 +71,6 @@ export class AuthenticationController {
         'Password and confirm password did not match',
       );
 
-    return await this.authenticationService.createAccount(formData);
+    return await this.authenticationService.create(formData);
   }
 }

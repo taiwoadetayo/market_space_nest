@@ -1,15 +1,18 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from '../dtos/CreateUser.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Users } from '../../users/users.entity';
+
 
 @Injectable()
 export class AuthenticationService {
-  async createAccount(formData): Promise<any> { 
-    const createuserDto = new CreateUserDto();
-    Object.assign(createuserDto, formData);
+  constructor(
+    @InjectRepository(Users)
+    private userRepository: Repository<Users>,
+  ) {}
 
-
-
-    return createuserDto;
-
+  async create(user: Users): Promise<Users> {
+    return this.userRepository.save(user);
   }
 }

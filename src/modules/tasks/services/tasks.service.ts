@@ -1,36 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, FindOneOptions } from 'typeorm';
-import { Task } from '../task.entity';
+import { Tasks } from '../tasks.entity';
 
 @Injectable()
 export class TasksService {
   constructor(
-    @InjectRepository(Task)
-    private tasksRepository: Repository<Task>,
+    @InjectRepository(Tasks)
+    private tasksRepository: Repository<Tasks>,
   ) {}
 
-  async create(task: Task): Promise<Task> {
-    return this.tasksRepository.save(task);
+  async create(tasks: Tasks): Promise<Tasks> {
+    return this.tasksRepository.save(tasks);
   }
 
-  async findAll(): Promise<Task[]> {
+  async findAll(): Promise<Tasks[]> {
     return this.tasksRepository.find();
   }
 
-  async findOne(id: number): Promise<Task | undefined> {
+  async findOne(id: number): Promise<Tasks | undefined> {
     // Create a FindOneOptions object with the where condition
-    const options: FindOneOptions<Task> = {
+    const options: FindOneOptions<Tasks> = {
       where: { id }, // Assuming "id" is the primary key of the Task entity
     };
 
     return this.tasksRepository.findOne(options);
   }
 
-  async update(id: number, task: Task): Promise<Task | undefined> {
-    await this.tasksRepository.update(id, task);
+  async update(id: number, tasks: Tasks): Promise<Tasks | undefined> {
+    await this.tasksRepository.update(id, tasks);
 
-    const options: FindOneOptions<Task> = {
+    const options: FindOneOptions<Tasks> = {
       where: { id }, // Assuming "id" is the primary key of the Task entity
     };
 
